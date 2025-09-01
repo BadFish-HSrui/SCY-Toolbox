@@ -38,7 +38,7 @@ APP_TITLE	:=	Hekate Toolbox
 APP_AUTHOR	:=	WerWolv, cathery
 APP_VERSION	:=	${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_MICRO}
 
-TARGET		:=	HekateToolbox
+TARGET		:=	SCYToolbox
 OUTDIR		:=	out
 BUILD		:=	build
 SOURCES		:=	source source/gui source/utils
@@ -56,14 +56,17 @@ ARCH	:=	-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE
 CFLAGS	:=	-g -Wall -O2 -ffunction-sections \
 			$(ARCH) $(DEFINES)
 
-CFLAGS	+=	$(INCLUDE) -D__SWITCH__ `freetype-config --cflags`
+PKG_CONFIG_PATH := $(DEVKITPRO)/portlibs/switch/lib/pkgconfig:$(PKG_CONFIG_PATH)
+export PKG_CONFIG_PATH
+
+CFLAGS	+=	$(INCLUDE) -D__SWITCH__ `pkg-config --cflags freetype2`
 
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fexceptions -std=gnu++17
 
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lnx `freetype-config --libs` -lturbojpeg \
+LIBS	:= -lnx `pkg-config --libs freetype2` -lturbojpeg \
 			$(foreach lib,$(CUSTOM_LIBS),-l$(lib))
 
 #---------------------------------------------------------------------------------
