@@ -30,12 +30,12 @@ include $(DEVKITPRO)/libnx/switch_rules
 #     - icon.jpg
 #     - <libnx folder>/default_icon.jpg
 #---------------------------------------------------------------------------------
-VERSION_MAJOR := 4
+VERSION_MAJOR := 5
 VERSION_MINOR := 0
-VERSION_MICRO := 2
+VERSION_MICRO := 0
 
-APP_TITLE	:=	Hekate Toolbox
-APP_AUTHOR	:=	WerWolv, cathery
+APP_TITLE	:=	"SCYToolBox"
+APP_AUTHOR	:=	"PTTSCY"
 APP_VERSION	:=	${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_MICRO}
 
 TARGET		:=	SCYToolbox

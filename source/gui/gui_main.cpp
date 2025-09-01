@@ -29,13 +29,13 @@ GuiMain::GuiMain() : Gui() {
 
     //0
     auto overrideKeysMenuButton = new Button();
-    overrideKeysMenuButton->position = {150, 230};
-    overrideKeysMenuButton->volume = {200, 200};
+    overrideKeysMenuButton->position = {170, 160};
+    overrideKeysMenuButton->volume = {180, 180};
     overrideKeysMenuButton->adjacentButton[ADJ_DOWN] = 2;
     overrideKeysMenuButton->adjacentButton[ADJ_RIGHT] = 1;
     overrideKeysMenuButton->drawAction = [&](Gui *gui, u16 x, u16 y, bool *isActivated) {
-        gui->drawTextAligned(fontHuge, x + 100, y + 100, currTheme.textColor, "...", ALIGNED_CENTER);
-        gui->drawTextAligned(font14, x + 100, y + 185, currTheme.textColor, "修改前端按键", ALIGNED_CENTER);
+        gui->drawTextAligned(fontHuge, x + 90, y + 115, currTheme.textColor, "\uE135", ALIGNED_CENTER);
+        gui->drawTextAligned(font20, x + 90, y + 170, currTheme.textColor, "HBmenu入口", ALIGNED_CENTER);
     };
     overrideKeysMenuButton->inputAction = [&](u64 kdown, bool *isActivated) {
         if (kdown & HidNpadButton_A)
@@ -45,12 +45,12 @@ GuiMain::GuiMain() : Gui() {
 
     //1
     auto autobootSelectorButton = new Button();
-    autobootSelectorButton->position = {370, 240};
-    autobootSelectorButton->volume = {700, 80};
+    autobootSelectorButton->position = {370, 160};
+    autobootSelectorButton->volume = {740, 80};
     autobootSelectorButton->adjacentButton[ADJ_DOWN] = 2;
     autobootSelectorButton->adjacentButton[ADJ_LEFT] = 0;
     autobootSelectorButton->drawAction = [&](Gui *gui, u16 x, u16 y, bool *isActivated) {
-        gui->drawTextAligned(font20, x + 37, y + 50, currTheme.textColor, "Hekate 自启动配置", ALIGNED_LEFT);
+        gui->drawTextAligned(font20, x + 180, y + 50, currTheme.textColor, "Hekate自启动配置", ALIGNED_CENTER);
 
         std::string autoBootName = m_currAutoBootConfig.name;
 
@@ -59,7 +59,7 @@ GuiMain::GuiMain() : Gui() {
             autoBootName += "...";
         }
 
-        gui->drawTextAligned(font20, x + 660, y + 50, currTheme.selectedColor, autoBootName.c_str(), ALIGNED_RIGHT);
+        gui->drawTextAligned(font20, x + 560, y + 50, currTheme.selectedColor, autoBootName.c_str(), ALIGNED_CENTER);
     };
     autobootSelectorButton->inputAction = [&](u32 kdown, bool *isActivated) {
         if (kdown & HidNpadButton_A) {
@@ -96,14 +96,14 @@ GuiMain::GuiMain() : Gui() {
 
     //2
     auto backgroundServicesButton = new Button();
-    backgroundServicesButton->position = {370, 340};
-    backgroundServicesButton->volume = {340, 80};
+    backgroundServicesButton->position = {370, 260};
+    backgroundServicesButton->volume = {355, 80};
     backgroundServicesButton->adjacentButton[ADJ_UP] = 1;
     backgroundServicesButton->adjacentButton[ADJ_LEFT] = 0;
     backgroundServicesButton->adjacentButton[ADJ_RIGHT] = 3;
     backgroundServicesButton->drawAction = [&](Gui *gui, u16 x, u16 y, bool *isActivated) {
-        gui->drawRectangled(x, y, 340, 80, currTheme.submenuButtonColor);
-        gui->drawTextAligned(font20, x + 37, y + 50, currTheme.textColor, "系统插件", ALIGNED_LEFT);
+        gui->drawRectangled(x, y, 355, 80, currTheme.submenuButtonColor);
+        gui->drawTextAligned(font20, x + 177, y + 50, currTheme.textColor, "系统插件", ALIGNED_CENTER);
     };
     backgroundServicesButton->inputAction = [&](u32 kdown, bool *isActivated) {
         if (kdown & HidNpadButton_A)
@@ -113,13 +113,13 @@ GuiMain::GuiMain() : Gui() {
 
     //3
     auto rebootButton = new Button();
-    rebootButton->position = {735, 340};
-    rebootButton->volume = {335, 80};
+    rebootButton->position = {755, 260};
+    rebootButton->volume = {355, 80};
     rebootButton->adjacentButton[ADJ_UP] = 1;
     rebootButton->adjacentButton[ADJ_LEFT] = 2;
     rebootButton->drawAction = [&](Gui *gui, u16 x, u16 y, bool *isActivated) {
-        gui->drawRectangled(x, y, 335, 80, currTheme.submenuButtonColor);
-        gui->drawTextAligned(font20, x + 55, y + 50, currTheme.textColor, "重启到hekate", ALIGNED_LEFT);
+        gui->drawRectangled(x, y, 355, 80, currTheme.submenuButtonColor);
+        gui->drawTextAligned(font20, x + 177, y + 50, currTheme.textColor, "关机/重启", ALIGNED_CENTER);
     };
     rebootButton->inputAction = [&](u32 kdown, bool *isActivated) {
         if (kdown & HidNpadButton_A) {
